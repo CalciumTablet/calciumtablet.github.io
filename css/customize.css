@@ -1,0 +1,6 @@
+
+/*
+1.Nav logo text color text shadow:
+2.edit in /themes/redefine/source/css/layout/_partials/navbar.styl
+3.add " text-shadow: -1px 0 1px #BEBEBE,0 -1px 1px #BEBEBE,1px 0 1px #BEBEBE,0 1px 1px #BEBEBE; " after color var
+*/
