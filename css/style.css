@@ -4718,7 +4718,6 @@ html.is-animating .swup-progress-icon {
   font-weight: 520;
   line-height: 1;
   color: var(--first-text-color);
-  text-shadow: -1px 0 1px #bebebe, 0 -1px 1px #bebebe, 1px 0 1px #bebebe, 0 1px 1px #bebebe;
   transform: translateY(1px);
 }
 @media (max-width: 768px) {
