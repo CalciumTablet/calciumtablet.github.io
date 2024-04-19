@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    
+    <meta name="author" content="Calciumtablet">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    
+        
+        
+        
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="http://example.com/2024/02/24/tutorial/software/resource/2024006/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+        <meta name="description" content="通过下载其他人的镜像既简单又快捷，但无可避免的会有阴险的人在镜像中植入自己的恶意程序，使用官方的纯净镜像在安全性上要优秀得多。本文介绍如何通过 UUPdump 获取各个渠道的纯净原版镜像。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="科学的获取 Windows 原版纯净镜像">
+<meta property="og:url" content="http://example.com/2024/02/24/Tutorial/Software/Resource/2024006/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="通过下载其他人的镜像既简单又快捷，但无可避免的会有阴险的人在镜像中植入自己的恶意程序，使用官方的纯净镜像在安全性上要优秀得多。本文介绍如何通过 UUPdump 获取各个渠道的纯净原版镜像。">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://raw.gitmirror.com/CalciumTablet/picx-images-hosting/master/2024006/20240060101.webp">
+<meta property="og:image" content="https://raw.gitmirror.com/CalciumTablet/picx-images-hosting/master/2024006/20240060102.webp">
+<meta property="og:image" content="https://raw.gitmirror.com/CalciumTablet/picx-images-hosting/master/2024006/20240060103.webp">
+<meta property="og:image" content="https://raw.gitmirror.com/CalciumTablet/picx-images-hosting/master/2024006/20240060104.webp">
+<meta property="og:image" content="https://raw.gitmirror.com/CalciumTablet/picx-images-hosting/master/2024006/20240060105.webp">
+<meta property="og:image" content="https://raw.gitmirror.com/CalciumTablet/picx-images-hosting/master/2024006/20240060106.webp">
+<meta property="og:image" content="https://raw.gitmirror.com/CalciumTablet/picx-images-hosting/master/2024006/20240060201.webp">
+<meta property="og:image" content="https://raw.gitmirror.com/CalciumTablet/picx-images-hosting/master/2024006/20240060202.webp">
+<meta property="og:image" content="https://raw.gitmirror.com/CalciumTablet/picx-images-hosting/master/2024006/front-matter.webp">
+<meta property="article:published_time" content="2024-02-24T18:17:14.000Z">
+<meta property="article:modified_time" content="2024-04-19T16:15:18.929Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Software">
+<meta property="article:tag" content="Resource">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.gitmirror.com/CalciumTablet/picx-images-hosting/master/2024006/20240060101.webp">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/svg/favicon.svg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/svg/favicon.svg">
+    <meta name="theme-color" content="#0e84ce">
+    <link rel="shortcut icon" href="/svg/favicon.svg">
+    <!--- Page Info-->
+    
+    <title>
+        
+            科学的获取 Windows 原版纯净镜像 -
+        
+        CalciumtabltDotCC
+    </title>
+
+    <link rel="stylesheet" href="//evan.beee.top/projects/hexo-theme-redefine@2.6.1/source/fonts/Chillax/chillax.css">
+
+    <!--- Inject Part-->
+    
+
+    
+        <style>
+    :root {
+        --preloader-background-color: #fff;
+        --preloader-text-color: #000;
+    }
+
+    @media (prefers-color-scheme: dark) {
+        :root {
+            --preloader-background-color: #202124;
+            --preloader-text-color: #fff;
+        }
+    }
+
+    @media (prefers-color-scheme: light) {
+        :root {
+            --preloader-background-color: #fff;
+            --preloader-text-color: #000;
+        }
+    }
+
+    @media (max-width: 600px) {
+        .ml13 {
+            font-size: 2.6rem !important; /* Adjust this value as needed */
+        }
+    }
+
+    .preloader {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem; /* Tailwind 'gap-4' is 1rem */
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        padding: 12px;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh; /* 'h-screen' is 100% of the viewport height */
+        background-color: var(--preloader-background-color);
+        z-index: 1100; /* 'z-[1100]' sets the z-index */
+        transition: opacity 0.2s ease-in-out;
+    }
+
+    .ml13 {
+        font-size: 3.2rem;
+        /* text-transform: uppercase; */
+        color: var(--preloader-text-color);
+        letter-spacing: -1px;
+        font-weight: 500;
+        font-family: 'Chillax-Variable', sans-serif;
+        text-align: center;
+    }
+
+    .ml13 .word {
+        display: inline-flex;
+        flex-wrap: wrap;
+        white-space: nowrap;
+    }
+
+    .ml13 .letter {
+        display: inline-block;
+        line-height: 1em;
+    }
+</style>
+
+<div class="preloader">
+    <script src="https://evan.beee.top/projects/hexo-theme-redefine@2.6.1/source/js/libs/anime.min.js"></script>
+    <h1 class="ml13">
+        CalciumtabltDotCC
+    </h1>
+    <script>
+        var textWrapper = document.querySelector('.ml13');
+        // Split text into words
+        var words = textWrapper.textContent.trim().split(' ');
+
+        // Clear the existing content
+        textWrapper.innerHTML = '';
+
+        // Wrap each word and its letters in spans
+        words.forEach(function(word) {
+            var wordSpan = document.createElement('span');
+            wordSpan.classList.add('word');
+            wordSpan.innerHTML = word.replace(/\S/g, "<span class='letter'>$&</span>");
+            textWrapper.appendChild(wordSpan);
+            textWrapper.appendChild(document.createTextNode(' ')); // Add space between words
+        });
+
+
+        anime.timeline({loop: true})
+            .add({
+                targets: '.ml13 .letter',
+                translateY: [100,0],
+                translateZ: 0,
+                opacity: [0,1],
+                easing: "easeOutExpo",
+                duration: 1400,
+                delay: (el, i) => 300 + 30 * i
+            }).add({
+            targets: '.ml13 .letter',
+            translateY: [0,-100],
+            opacity: [1,0],
+            easing: "easeInExpo",
+            duration: 1200,
+            delay: (el, i) => 100 + 30 * i
+        });
+
+        let themeStatus = JSON.parse(localStorage.getItem('REDEFINE-THEME-STATUS'))?.isDark;
+
+        // If the theme status is not found in local storage, check the preferred color scheme
+        if (themeStatus === undefined || themeStatus === null) {
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                themeStatus = 'dark';
+            } else {
+                themeStatus = 'light';
+            }
+        }
+
+        // Now you can use the themeStatus variable in your code
+        if (themeStatus) {
+            document.documentElement.style.setProperty('--preloader-background-color', '#202124');
+            document.documentElement.style.setProperty('--preloader-text-color', '#fff');
+        } else {
+            document.documentElement.style.setProperty('--preloader-background-color', '#fff');
+            document.documentElement.style.setProperty('--preloader-text-color', '#000');
+        }
+
+        window.addEventListener('load', function () {
+            hidePreloaderAfterTimeout(1000); // Hide after 1000 milliseconds once the window has loaded
+        });
+
+        // Backup failsafe: Hide preloader after a maximum of 5000 milliseconds, regardless of the window load event
+        hidePreloaderAfterTimeout(5000);
+
+        function hidePreloaderAfterTimeout(delay) {
+            setTimeout(function () {
+                var preloader = document.querySelector('.preloader');
+                preloader.style.opacity = '0';
+                setTimeout(function () {
+                    preloader.style.display = 'none';
+                }, 200);
+            }, delay);
+        }
+    </script>
+</div>
+    
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+        <link rel="stylesheet" href="//evan.beee.top/projects/hexo-theme-redefine@2.6.1/source/assets/build/styles.css">
+    
+
+    <link rel="stylesheet" href="//evan.beee.top/projects/hexo-theme-redefine@2.6.1/source/fonts/fonts.css">
+    <link rel="stylesheet" href="//evan.beee.top/projects/hexo-theme-redefine@2.6.1/source/fonts/Satoshi/satoshi.css">
+    <!--- Font Part-->
+    
+    
+    
+    
+
+
+    <script id="hexo-configurations">
+    window.config = {"hostname":"example.com","root":"/","language":"en"};
+    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"title_alignment":"left","headings_top_spacing":{"h1":"5rem","h2":"4rem","h3":"2.8rem","h4":"2.5rem","h5":"2.2rem","h6":"2rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":["钙片"]},"code_block":{"copy":true,"style":"simple","font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":true,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#0e84ce","secondary":null,"default_mode":"light"},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":true,"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"https://raw.gitmirror.com/CalciumTablet/picx-images-hosting/master/website/background_light1.webp","dark":"https://raw.gitmirror.com/CalciumTablet/picx-images-hosting/master/website/background_light1.webp"},"title":"<svg width=\"400px\" viewBox=\"0 0 390 122.15\"><g><path id=\"calciumtablet_c1\" class=\"title_svg\" d=\"M26.34,7.98c1.12,0,2.34.99,3.66,2.97s1.98,3.61,1.98,4.89-.26,1.92-.78,1.92c-.24,0-.75-.08-1.53-.24-.78-.16-1.45-.24-2.01-.24-2,0-4.34,1.28-7.02,3.84-2.68,2.56-4.97,5.62-6.87,9.18-1.9,3.56-2.85,6.64-2.85,9.24,0,1.28.2,2.21.6,2.79.4.58,1.12.87,2.16.87,2.76,0,5.56-.42,8.4-1.26,2.84-.84,5.18-1.69,7.02-2.55,1.84-.86,2.89-1.29,3.15-1.29s.52.23.78.69c.26.46.39,1.01.39,1.65,0,1.36-1.08,2.97-3.24,4.83-2.16,1.86-4.77,3.45-7.83,4.77-3.06,1.32-5.83,1.98-8.31,1.98s-5.09-1.5-7.83-4.5c-2.74-3-4.11-5.86-4.11-8.58,0-3.8,1.22-8.13,3.66-12.99,2.44-4.86,5.59-9.07,9.45-12.63,3.86-3.56,7.57-5.34,11.13-5.34Z\"/><path id=\"calciumtablet_a1\" class=\"title_svg\" d=\"M64.02,35.04c.72.64,1.08,1.22,1.08,1.74s-.24,1.6-.72,3.24c-.48,1.64-.8,2.91-.96,3.81-.16.9-.29,1.61-.39,2.13-.1.52-.17.93-.21,1.23-.04.3-.11.67-.21,1.11-.1.44-.18.79-.24,1.05-.06.26-.14.56-.24.9-.1.34-.21.6-.33.78-.12.18-.26.37-.42.57-.24.32-.64.48-1.2.48s-1.25-.56-2.07-1.68c-.82-1.12-1.43-2.48-1.83-4.08-3.76,3.84-6.92,5.76-9.48,5.76-1.72,0-3.58-.95-5.58-2.85-2-1.9-3-3.8-3-5.7s.86-4.61,2.58-8.13c1.72-3.52,4.07-6.78,7.05-9.78,2.98-3,5.93-4.5,8.85-4.5,1.68,0,3.62.98,5.82,2.94,2.2,1.96,3.3,3.75,3.3,5.37s-.6,3.49-1.8,5.61ZM46.56,44.52c1.6,0,3.73-1.09,6.39-3.27,2.66-2.18,4.31-4.93,4.95-8.25.04-.48.38-.76,1.02-.84-.12-2.28-.5-3.42-1.14-3.42-1.6,0-3.39,1.04-5.37,3.12-1.98,2.08-3.6,4.3-4.86,6.66-1.26,2.36-1.89,4.1-1.89,5.22,0,.32.05.53.15.63.1.1.35.15.75.15Z\"/><path id=\"calciumtablet_l1\" class=\"title_svg\" d=\"M81.3,6.96c1.52,1.76,2.28,3.44,2.28,5.04s-.24,4.45-.72,8.55c-.48,4.1-.98,7.37-1.5,9.81-3.32,14.48-5.64,21.72-6.96,21.72-.88,0-1.97-.71-3.27-2.13-1.3-1.42-1.95-2.59-1.95-3.51,0-.08.54-2.16,1.62-6.24,1.08-4.08,2.17-9.33,3.27-15.75,1.1-6.42,1.65-12.55,1.65-18.39,0-1.16.62-1.74,1.86-1.74.96,0,2.2.88,3.72,2.64Z\"/><path id=\"calciumtablet_c2\" class=\"title_svg\" d=\"M85.08,42.66c0-2.8.88-5.88,2.64-9.24,1.76-3.36,4.07-6.24,6.93-8.64,2.86-2.4,5.67-3.6,8.43-3.6,1.4,0,2.84.91,4.32,2.73,1.48,1.82,2.22,3.45,2.22,4.89,0,1.04-.48,1.56-1.44,1.56-.48,0-1.14-.22-1.98-.66-.84-.44-1.7-.66-2.58-.66s-2.13.75-3.75,2.25-3.06,3.3-4.32,5.4c-1.26,2.1-1.89,3.75-1.89,4.95s.23,1.98.69,2.34c.46.36,1.58.54,3.36.54s3.4-.16,4.86-.48c1.46-.32,2.54-.65,3.24-.99.7-.34,1.33-.51,1.89-.51,1.12,0,1.68.48,1.68,1.44,0,1.76-1.54,3.55-4.62,5.37-3.08,1.82-6.16,2.73-9.24,2.73-1.96,0-4.19-1.09-6.69-3.27-2.5-2.18-3.75-4.23-3.75-6.15Z\"/><path id=\"calciumtablet_i1\" class=\"title_svg\" d=\"M121.2,21.12c1.4,0,2.65.8,3.75,2.4,1.1,1.6,1.65,3.14,1.65,4.62,0,.76-.69,3.49-2.07,8.19-1.38,4.7-2.75,9.15-4.11,13.35-.48,1.56-1.46,2.34-2.94,2.34-.88,0-1.65-.33-2.31-.99s-.99-1.52-.99-2.58.51-3.7,1.53-7.92c1.02-4.22,1.8-7.82,2.34-10.8.54-2.98,1.04-5.16,1.5-6.54.46-1.38,1.01-2.07,1.65-2.07ZM120.3,13.62c0-1.04.47-2.11,1.41-3.21.94-1.1,1.86-1.65,2.76-1.65s1.97,1.08,3.21,3.24c1.24,2.16,1.86,3.73,1.86,4.71s-.32,1.73-.96,2.25c-.64.52-1.3.78-1.98.78-1.16,0-2.5-.76-4.02-2.28-1.52-1.52-2.28-2.8-2.28-3.84Z\"/><path id=\"calciumtablet_u1\" class=\"title_svg\" d=\"M151.08,22.62c.32-1,.96-1.5,1.92-1.5s2.07.82,3.33,2.46c1.26,1.64,1.89,3.06,1.89,4.26,0,.44-.92,3.38-2.76,8.82-1.84,5.44-3.26,9.74-4.26,12.9-.56,1.68-1.5,2.52-2.82,2.52-.8,0-1.47-.29-2.01-.87-.54-.58-.81-1.49-.81-2.73s.24-3,.72-5.28c-4.12,5.92-7.4,8.88-9.84,8.88-1.28,0-2.82-.83-4.62-2.49-1.8-1.66-2.7-3.27-2.7-4.83,0-3.84,1.09-8.74,3.27-14.7,2.18-5.96,4.23-8.94,6.15-8.94,1.16,0,2.19.52,3.09,1.56.9,1.04,1.35,2.18,1.35,3.42,0,.48-.5,1.82-1.5,4.02-3.04,6.6-4.56,11.26-4.56,13.98,0,.24.1.36.3.36.6,0,1.73-.95,3.39-2.85,1.66-1.9,3.52-4.62,5.58-8.16,2.06-3.54,3.69-7.15,4.89-10.83Z\"/><path id=\"calciumtablet_m1\" class=\"title_svg\" d=\"M199.56,21.12c1.56,0,2.86,1.04,3.9,3.12,1.04,2.08,1.56,3.98,1.56,5.7s-.33,4.27-.99,7.65c-.66,3.38-1.7,6.64-3.12,9.78-1.42,3.14-2.95,4.71-4.59,4.71-1.32,0-1.98-.9-1.98-2.7s.52-4.74,1.56-8.82c1.04-4.08,1.56-6.76,1.56-8.04s-.2-1.92-.6-1.92c-.84,0-1.84.92-3,2.76-1.16,1.84-2.55,4.3-4.17,7.38-1.62,3.08-2.63,5.06-3.03,5.94-.4.88-.73,1.58-.99,2.1-.26.52-.55,1.06-.87,1.62-1.28,2.12-2.98,2.12-5.1,0-1.08-1.08-1.62-2.06-1.62-2.94,0-.16.33-1.69.99-4.59.66-2.9.99-6.21.99-9.93,0-1.56-.18-2.34-.54-2.34-.48,0-1.04.48-1.68,1.44-.64.96-1.62,2.7-2.94,5.22-1.32,2.52-2.46,4.6-3.42,6.24-3.36,5.72-5.92,8.58-7.68,8.58-.88,0-1.97-.74-3.27-2.22-1.3-1.48-1.95-2.61-1.95-3.39s.45-2.66,1.35-5.64c.9-2.98,1.48-6.15,1.74-9.51.26-3.36.5-5.98.72-7.86.22-1.88.69-2.82,1.41-2.82,1.52,0,2.99.63,4.41,1.89,1.42,1.26,2.13,2.41,2.13,3.45,0,2.36-.86,6.48-2.58,12.36,2.8-6.68,5.16-11.2,7.08-13.56,2.04-2.44,4-3.66,5.88-3.66,1.04,0,2.33.96,3.87,2.88,1.54,1.92,2.31,3.71,2.31,5.37s-.02,3.11-.06,4.35c1.24-3.12,3.12-6,5.64-8.64,2.52-2.64,4.88-3.96,7.08-3.96Z\"/><path id=\"calciumtablet_t1\" class=\"title_svg\" d=\"M222.45,32.79c-.62,1.94-1.38,4.37-2.28,7.29-.9,2.92-1.35,4.47-1.35,4.65s.33.27.99.27,2.23-.45,4.71-1.35c2.48-.9,3.94-1.35,4.38-1.35,1,0,1.5.68,1.5,2.04s-1.34,2.99-4.02,4.89c-2.68,1.9-5.48,2.85-8.4,2.85-1.28,0-2.8-.7-4.56-2.1-1.76-1.4-2.64-2.82-2.64-4.26,0-1.2.61-3.73,1.83-7.59,1.22-3.86,2.05-6.51,2.49-7.95-1.56.44-2.74.66-3.54.66s-1.64-.55-2.52-1.65c-.88-1.1-1.32-2.15-1.32-3.15,0-1.28,3.1-2.36,9.3-3.24.76-3.72,1.14-6.94,1.14-9.66,0-1.2.6-1.8,1.8-1.8,1.04,0,2.37.63,3.99,1.89,1.62,1.26,2.43,2.5,2.43,3.72s-.26,2.93-.78,5.13c1.92-.08,3.38-.12,4.38-.12,3,0,4.5.68,4.5,2.04,0,.88-.87,1.63-2.61,2.25-1.74.62-4.41,1.29-8.01,2.01-.32,1.08-.79,2.59-1.41,4.53Z\"/><path id=\"calciumtablet_a2\" class=\"title_svg\" d=\"M260.88,35.04c.72.64,1.08,1.22,1.08,1.74s-.24,1.6-.72,3.24c-.48,1.64-.8,2.91-.96,3.81-.16.9-.29,1.61-.39,2.13-.1.52-.17.93-.21,1.23-.04.3-.11.67-.21,1.11-.1.44-.18.79-.24,1.05-.06.26-.14.56-.24.9-.1.34-.21.6-.33.78s-.26.37-.42.57c-.24.32-.64.48-1.2.48s-1.25-.56-2.07-1.68c-.82-1.12-1.43-2.48-1.83-4.08-3.76,3.84-6.92,5.76-9.48,5.76-1.72,0-3.58-.95-5.58-2.85-2-1.9-3-3.8-3-5.7s.86-4.61,2.58-8.13c1.72-3.52,4.07-6.78,7.05-9.78,2.98-3,5.93-4.5,8.85-4.5,1.68,0,3.62.98,5.82,2.94,2.2,1.96,3.3,3.75,3.3,5.37s-.6,3.49-1.8,5.61ZM243.42,44.52c1.6,0,3.73-1.09,6.39-3.27,2.66-2.18,4.31-4.93,4.95-8.25.04-.48.38-.76,1.02-.84-.12-2.28-.5-3.42-1.14-3.42-1.6,0-3.39,1.04-5.37,3.12-1.98,2.08-3.6,4.3-4.86,6.66-1.26,2.36-1.89,4.1-1.89,5.22,0,.32.05.53.15.63.1.1.35.15.75.15Z\"/><path id=\"calciumtablet_b1\" class=\"title_svg\" d=\"M289.26,21.18c1.84,0,3.59,1.02,5.25,3.06,1.66,2.04,2.49,3.98,2.49,5.82s-.42,4-1.26,6.48c-.84,2.48-1.96,4.88-3.36,7.2-1.4,2.32-3.16,4.28-5.28,5.88-2.12,1.6-4.33,2.4-6.63,2.4s-4.91-1.1-7.83-3.3c-.8,2.24-1.46,3.36-1.98,3.36-.84,0-1.9-.7-3.18-2.1-1.28-1.4-1.92-2.54-1.92-3.42s.66-3.76,1.98-8.64c3.96-14.64,5.94-25.24,5.94-31.8,0-1.2.58-1.8,1.74-1.8.92,0,2.16.87,3.72,2.61,1.56,1.74,2.34,3.37,2.34,4.89,0,3.56-1.02,9.1-3.06,16.62,4.56-4.84,8.24-7.26,11.04-7.26ZM279.54,45.12c2.2,0,4.45-1.72,6.75-5.16,2.3-3.44,3.45-6.82,3.45-10.14,0-.24-.05-.39-.15-.45-.1-.06-.37-.09-.81-.09-2.2,0-4.55,1.32-7.05,3.96-2.5,2.64-4.71,5.94-6.63,9.9,1.68,1.32,3.16,1.98,4.44,1.98Z\"/><path id=\"calciumtablet_l2\" class=\"title_svg\" d=\"M312.17,6.96c1.52,1.76,2.28,3.44,2.28,5.04s-.24,4.45-.72,8.55c-.48,4.1-.98,7.37-1.5,9.81-3.32,14.48-5.64,21.72-6.96,21.72-.88,0-1.97-.71-3.27-2.13-1.3-1.42-1.95-2.59-1.95-3.51,0-.08.54-2.16,1.62-6.24s2.17-9.33,3.27-15.75c1.1-6.42,1.65-12.55,1.65-18.39,0-1.16.62-1.74,1.86-1.74.96,0,2.2.88,3.72,2.64Z\"/><path id=\"calciumtablet_e1\" class=\"title_svg\" d=\"M338.84,37.62c-2.66,1.56-5.39,2.34-8.19,2.34s-5.1-.2-6.9-.6c-.36,1.08-.54,2.16-.54,3.24s.18,1.85.54,2.31c.36.46,1.26.69,2.7.69,3,0,5.57-.28,7.71-.84,2.14-.56,3.25-.84,3.33-.84,1.64,0,2.46.54,2.46,1.62,0,1.56-1.29,3.04-3.87,4.44-2.58,1.4-5.56,2.1-8.94,2.1s-6.09-1.06-8.13-3.18c-2.04-2.12-3.06-4.63-3.06-7.53s.85-5.93,2.55-9.09c1.7-3.16,3.83-5.81,6.39-7.95,2.56-2.14,5.11-3.21,7.65-3.21s4.89,1.25,7.05,3.75c2.16,2.5,3.24,4.99,3.24,7.47,0,1.96-1.33,3.72-3.99,5.28ZM334.62,29.64c-.84-.76-1.63-1.14-2.37-1.14s-1.69.53-2.85,1.59c-1.16,1.06-2.26,2.43-3.3,4.11.36.04.88.06,1.56.06,5.48,0,8.22-.96,8.22-2.88,0-.4-.42-.98-1.26-1.74Z\"/><path id=\"calciumtablet_t2\" class=\"title_svg\" d=\"M359.36,32.79c-.62,1.94-1.38,4.37-2.28,7.29-.9,2.92-1.35,4.47-1.35,4.65s.33.27.99.27,2.23-.45,4.71-1.35c2.48-.9,3.94-1.35,4.38-1.35,1,0,1.5.68,1.5,2.04s-1.34,2.99-4.02,4.89c-2.68,1.9-5.48,2.85-8.4,2.85-1.28,0-2.8-.7-4.56-2.1-1.76-1.4-2.64-2.82-2.64-4.26,0-1.2.61-3.73,1.83-7.59,1.22-3.86,2.05-6.51,2.49-7.95-1.56.44-2.74.66-3.54.66s-1.64-.55-2.52-1.65c-.88-1.1-1.32-2.15-1.32-3.15,0-1.28,3.1-2.36,9.3-3.24.76-3.72,1.14-6.94,1.14-9.66,0-1.2.6-1.8,1.8-1.8,1.04,0,2.37.63,3.99,1.89,1.62,1.26,2.43,2.5,2.43,3.72s-.26,2.93-.78,5.13c1.92-.08,3.38-.12,4.38-.12,3,0,4.5.68,4.5,2.04,0,.88-.87,1.63-2.61,2.25-1.74.62-4.41,1.29-8.01,2.01-.32,1.08-.79,2.59-1.41,4.53Z\"/></g><g><path id=\"dotccblog_d1\" class=\"title_svg\" d=\"M84.95,68.47c2.18,0,4.57.45,7.16,1.34,2.59.9,5,2.07,7.22,3.53s4.09,3.21,5.59,5.25c1.5,2.04,2.25,4.12,2.25,6.22,0,1.57-1.27,3.52-3.8,5.86-2.53,2.34-5.47,4.36-8.8,6.07-3.33,1.71-6.06,2.56-8.19,2.56-.48,0-1.24-.62-2.29-1.87-1.05-1.25-1.57-2.16-1.57-2.75,0-1.15.76-4.35,2.29-9.6,1.53-5.25,2.47-8.86,2.83-10.82-1.01-.67-1.85-1.48-2.52-2.42-.67-.94-1.01-1.74-1.01-2.39s.28-.99.84-.99ZM101.12,83.64c0-.9-.83-2.08-2.48-3.55-1.65-1.47-3.57-2.69-5.75-3.67-.17,2.1-1.36,6.59-3.57,13.48-.11.36-.29.96-.52,1.79-.24.83-.41,1.38-.52,1.66,2.74-.92,5.57-2.48,8.48-4.68,2.91-2.2,4.37-3.87,4.37-5.02Z\"/><path id=\"dotccblog_o1\" class=\"title_svg\" d=\"M112.4,82.33c2.17-3.14,4.32-4.7,6.45-4.7s3.92.75,5.38,2.25c1.46,1.5,2.18,3.3,2.18,5.42s-.5,4.26-1.51,6.45c-1.01,2.18-2.42,4-4.24,5.44-1.82,1.44-3.77,2.16-5.84,2.16-1.54,0-2.87-.69-3.99-2.06-1.12-1.37-1.68-3.04-1.68-5,0-3.5,1.08-6.82,3.26-9.95ZM119.22,90.99c1.12-2.04,1.68-3.96,1.68-5.75s-.25-3.02-.76-3.7c-1.2.7-2.4,2.17-3.59,4.41-1.19,2.24-1.79,4.21-1.79,5.9s.17,2.77.5,3.21c1.51-.67,2.83-2.03,3.95-4.07Z\"/><path id=\"dotccblog_t1\" class=\"title_svg\" d=\"M138.4,85.84c-.43,1.36-.97,3.06-1.6,5.1-.63,2.04-.95,3.13-.95,3.25s.23.19.69.19,1.56-.32,3.3-.95c1.74-.63,2.76-.94,3.07-.94.7,0,1.05.48,1.05,1.43s-.94,2.09-2.81,3.42c-1.88,1.33-3.84,2-5.88,2-.9,0-1.96-.49-3.19-1.47-1.23-.98-1.85-1.97-1.85-2.98,0-.84.43-2.61,1.28-5.31.85-2.7,1.43-4.56,1.74-5.57-1.09.31-1.92.46-2.48.46s-1.15-.38-1.76-1.16c-.62-.77-.92-1.5-.92-2.21,0-.9,2.17-1.65,6.51-2.27.53-2.6.8-4.86.8-6.76,0-.84.42-1.26,1.26-1.26.73,0,1.66.44,2.79,1.32,1.13.88,1.7,1.75,1.7,2.6s-.18,2.05-.55,3.59c1.34-.06,2.37-.08,3.07-.08,2.1,0,3.15.48,3.15,1.43,0,.62-.61,1.14-1.83,1.58-1.22.43-3.09.9-5.61,1.41-.22.76-.55,1.81-.99,3.17Z\"/><path id=\"dotccblog_c1\" class=\"title_svg\" d=\"M164.84,68.47c.78,0,1.64.69,2.56,2.08s1.39,2.53,1.39,3.42-.18,1.34-.55,1.34c-.17,0-.52-.06-1.07-.17-.55-.11-1.02-.17-1.41-.17-1.4,0-3.04.9-4.91,2.69-1.88,1.79-3.48,3.93-4.81,6.43-1.33,2.49-2,4.65-2,6.47,0,.9.14,1.55.42,1.95.28.41.78.61,1.51.61,1.93,0,3.89-.29,5.88-.88,1.99-.59,3.63-1.18,4.91-1.79,1.29-.6,2.02-.9,2.21-.9s.36.16.55.48c.18.32.27.71.27,1.15,0,.95-.76,2.08-2.27,3.38-1.51,1.3-3.34,2.42-5.48,3.34-2.14.92-4.08,1.39-5.82,1.39s-3.56-1.05-5.48-3.15c-1.92-2.1-2.88-4.1-2.88-6.01,0-2.66.85-5.69,2.56-9.09,1.71-3.4,3.91-6.35,6.61-8.84,2.7-2.49,5.3-3.74,7.79-3.74Z\"/><path id=\"dotccblog_c2\" class=\"title_svg\" d=\"M190.75,68.47c.78,0,1.64.69,2.56,2.08s1.39,2.53,1.39,3.42-.18,1.34-.55,1.34c-.17,0-.52-.06-1.07-.17-.54-.11-1.01-.17-1.41-.17-1.4,0-3.04.9-4.91,2.69-1.88,1.79-3.48,3.93-4.81,6.43-1.33,2.49-2,4.65-2,6.47,0,.9.14,1.55.42,1.95.28.41.78.61,1.51.61,1.93,0,3.89-.29,5.88-.88,1.99-.59,3.62-1.18,4.91-1.79,1.29-.6,2.02-.9,2.21-.9s.36.16.55.48c.18.32.27.71.27,1.15,0,.95-.76,2.08-2.27,3.38-1.51,1.3-3.34,2.42-5.48,3.34-2.14.92-4.08,1.39-5.82,1.39s-3.56-1.05-5.48-3.15c-1.92-2.1-2.88-4.1-2.88-6.01,0-2.66.85-5.69,2.56-9.09,1.71-3.4,3.91-6.35,6.61-8.84,2.7-2.49,5.3-3.74,7.79-3.74Z\"/><path id=\"dotccblog_b1\" class=\"title_svg\" d=\"M238.13,88.93c0,1.74-.96,3.44-2.88,5.12s-4.24,3.02-6.97,4.01c-2.73.99-5.33,1.49-7.79,1.49-1.06,0-2.31-.65-3.74-1.95-1.43-1.3-2.14-2.37-2.14-3.21,0-.48.1-.85.31-1.13s.46-.42.73-.42.9.23,1.87.69c.97.46,1.69.69,2.18.69s.97-.04,1.45-.13c-.7-.28-1.4-.77-2.1-1.47s-1.05-1.37-1.05-2.02c0-.28.46-2.32,1.39-6.11s1.41-7.04,1.47-9.72c-.5-.48-.96-1.06-1.37-1.74-.41-.69-.61-1.2-.61-1.53,0-.78.62-1.41,1.85-1.89,1.23-.48,2.77-.71,4.62-.71,3.92,0,7.06.52,9.43,1.55,2.37,1.04,3.55,2.69,3.55,4.96,0,1.43-.6,2.88-1.81,4.37-1.21,1.48-2.79,2.84-4.75,4.07l.42.13c1.68.45,3.09,1.11,4.22,2,1.13.88,1.7,1.87,1.7,2.96ZM232.83,88.76c0-.56-.81-1.04-2.42-1.45-1.61-.41-2.95-.61-4.01-.61-.59,0-1.22-.43-1.89-1.3-1.26,5.18-2.02,8.02-2.27,8.53,2.35-.5,4.7-1.27,7.06-2.31,2.35-1.04,3.53-1.99,3.53-2.86ZM230.69,74.27c-.87,0-2.91.31-6.13.92,1.01,1.12,1.51,2.05,1.51,2.79s-.24,2.11-.71,4.1c.45-.34,1.25-.83,2.39-1.47,1.15-.64,1.87-1.07,2.16-1.28s.69-.53,1.2-.95c.95-.76,1.43-1.63,1.43-2.62s-.62-1.49-1.85-1.49Z\"/><path id=\"dotccblog_l1\" class=\"title_svg\" d=\"M250.18,67.76c1.06,1.23,1.6,2.41,1.6,3.53s-.17,3.12-.5,5.98c-.34,2.87-.69,5.16-1.05,6.87-2.32,10.14-3.95,15.2-4.87,15.2-.62,0-1.38-.5-2.29-1.49-.91-.99-1.37-1.81-1.37-2.46,0-.06.38-1.51,1.13-4.37.76-2.86,1.52-6.53,2.29-11.02s1.16-8.79,1.16-12.87c0-.81.43-1.22,1.3-1.22.67,0,1.54.62,2.6,1.85Z\"/><path id=\"dotccblog_o2\" class=\"title_svg\" d=\"M255.87,82.33c2.17-3.14,4.32-4.7,6.45-4.7s3.92.75,5.38,2.25,2.18,3.3,2.18,5.42-.5,4.26-1.51,6.45c-1.01,2.18-2.42,4-4.24,5.44-1.82,1.44-3.77,2.16-5.84,2.16-1.54,0-2.87-.69-3.99-2.06-1.12-1.37-1.68-3.04-1.68-5,0-3.5,1.08-6.82,3.25-9.95ZM262.69,90.99c1.12-2.04,1.68-3.96,1.68-5.75s-.25-3.02-.76-3.7c-1.21.7-2.4,2.17-3.59,4.41-1.19,2.24-1.79,4.21-1.79,5.9s.17,2.77.5,3.21c1.51-.67,2.83-2.03,3.95-4.07Z\"/><path id=\"dotccblog_g1\" class=\"title_svg\" d=\"M288.57,86.74c.42.48.63,1.05.63,1.72s-.28,1.5-.84,2.48c-.7,1.68-1.32,3.77-1.85,6.26-.53,2.49-1.06,4.49-1.58,5.99-.52,1.5-1.08,2.78-1.68,3.84-.6,1.06-1.42,1.95-2.46,2.65-1.04.7-2.23,1.05-3.57,1.05-1.88,0-3.56-.62-5.04-1.85-1.48-1.23-2.23-2.29-2.23-3.17s.24-1.68.71-2.39.92-1.07,1.32-1.07.8.22,1.18.67c.38.45.73.93,1.05,1.45.32.52.75,1,1.28,1.45.53.45,1.12.67,1.76.67s1.23-.42,1.76-1.26c.53-.84.94-1.75,1.22-2.73.7-2.3,1.13-3.93,1.3-4.91-1.9,1.18-3.45,1.76-4.64,1.76s-2.35-.65-3.47-1.95-1.68-2.53-1.68-3.7.32-2.62.95-4.37c.63-1.75,1.44-3.5,2.44-5.25.99-1.75,2.25-3.25,3.78-4.51,1.53-1.26,3.06-1.89,4.6-1.89,1.04,0,1.92.26,2.65.78.73.52,1.26,1.21,1.6,2.08.59,1.51.88,3.22.88,5.12,0,.28-.03.64-.08,1.09ZM276.93,93.51c0,.36.15.55.46.55.81,0,2.13-.74,3.95-2.23,1.82-1.48,3.04-2.95,3.65-4.41v-.8c0-1.82-.17-2.92-.5-3.32-.17-.2-.39-.29-.67-.29-1.34,0-2.83,1.41-4.45,4.24-1.62,2.83-2.44,4.91-2.44,6.26Z\"/></g><style>.title_svg{stroke:#323739;stroke-width:2;fill:#fcfcfc;fill-rule:evenodd;stroke-dasharray:1000,1;stroke-linecap:round}#calciumtablet_c1{stroke-dasharray:158;stroke-dashoffset:158;fill-opacity:0;animation:draw 1.6s cubic-bezier(.11,0,.5,0) 0s forwards,fill 1.2s cubic-bezier(.11,0,.5,0) .6s forwards}#calciumtablet_a1{stroke-dasharray:145;stroke-dashoffset:145;fill-opacity:0;animation:draw 1.6s cubic-bezier(.11,0,.5,0) 0s forwards,fill 1.2s cubic-bezier(.11,0,.5,0) .6s forwards}#calciumtablet_l1{stroke-dasharray:104;stroke-dashoffset:104;fill-opacity:0;animation:draw 1.6s cubic-bezier(.11,0,.5,0) 0s forwards,fill 1.2s cubic-bezier(.11,0,.5,0) .6s forwards}#calciumtablet_c2{stroke-dasharray:116;stroke-dashoffset:116;fill-opacity:0;animation:draw 1.6s cubic-bezier(.11,0,.5,0) 0s forwards,fill 1.2s cubic-bezier(.11,0,.5,0) .6s forwards}#calciumtablet_i1{stroke-dasharray:101;stroke-dashoffset:101;fill-opacity:0;animation:draw 1.6s cubic-bezier(.11,0,.5,0) 0s forwards,fill 1.2s cubic-bezier(.11,0,.5,0) .6s forwards}#calciumtablet_u1{stroke-dasharray:154;stroke-dashoffset:154;fill-opacity:0;animation:draw 1.6s cubic-bezier(.11,0,.5,0) 0s forwards,fill 1.2s cubic-bezier(.11,0,.5,0) .6s forwards}#calciumtablet_m1{stroke-dasharray:250;stroke-dashoffset:250;fill-opacity:0;animation:draw 1.6s cubic-bezier(.11,0,.5,0) 0s forwards,fill 1.2s cubic-bezier(.11,0,.5,0) .6s forwards}#calciumtablet_t1{stroke-dasharray:142;stroke-dashoffset:142;fill-opacity:0;animation:draw 1.6s cubic-bezier(.11,0,.5,0) 0s forwards,fill 1.2s cubic-bezier(.11,0,.5,0) .6s forwards}#calciumtablet_a2{stroke-dasharray:145;stroke-dashoffset:145;fill-opacity:0;animation:draw 1.6s cubic-bezier(.11,0,.5,0) 0s forwards,fill 1.2s cubic-bezier(.11,0,.5,0) .6s forwards}#calciumtablet_b1{stroke-dasharray:195;stroke-dashoffset:195;fill-opacity:0;animation:draw 1.6s cubic-bezier(.11,0,.5,0) 0s forwards,fill 1.2s cubic-bezier(.11,0,.5,0) .6s forwards}#calciumtablet_l2{stroke-dasharray:104;stroke-dashoffset:104;fill-opacity:0;animation:draw 1.6s cubic-bezier(.11,0,.5,0) 0s forwards,fill 1.2s cubic-bezier(.11,0,.5,0) .6s forwards}#calciumtablet_e1{stroke-dasharray:148;stroke-dashoffset:148;fill-opacity:0;animation:draw 1.6s cubic-bezier(.11,0,.5,0) 0s forwards,fill 1.2s cubic-bezier(.11,0,.5,0) .6s forwards}#calciumtablet_t2{stroke-dasharray:142;stroke-dashoffset:142;fill-opacity:0;animation:draw 1.6s cubic-bezier(.11,0,.5,0) 0s forwards,fill 1.2s cubic-bezier(.11,0,.5,0) .6s forwards}#dotccblog_d1{stroke-dasharray:137;stroke-dashoffset:137;fill-opacity:0;animation:draw 1.6s cubic-bezier(.11,0,.5,0) 0s forwards,fill 1.2s cubic-bezier(.11,0,.5,0) .6s forwards}#dotccblog_o1{stroke-dasharray:92;stroke-dashoffset:92;fill-opacity:0;animation:draw 1.6s cubic-bezier(.11,0,.5,0) 0s forwards,fill 1.2s cubic-bezier(.11,0,.5,0) .6s forwards}#dotccblog_t1{stroke-dasharray:100;stroke-dashoffset:100;fill-opacity:0;animation:draw 1.6s cubic-bezier(.11,0,.5,0) 0s forwards,fill 1.2s cubic-bezier(.11,0,.5,0) .6s forwards}#dotccblog_c1{stroke-dasharray:111;stroke-dashoffset:111;fill-opacity:0;animation:draw 1.6s cubic-bezier(.11,0,.5,0) 0s forwards,fill 1.2s cubic-bezier(.11,0,.5,0) .6s forwards}#dotccblog_c2{stroke-dasharray:111;stroke-dashoffset:111;fill-opacity:0;animation:draw 1.6s cubic-bezier(.11,0,.5,0) 0s forwards,fill 1.2s cubic-bezier(.11,0,.5,0) .6s forwards}#dotccblog_b1{stroke-dasharray:164;stroke-dashoffset:164;fill-opacity:0;animation:draw 1.6s cubic-bezier(.11,0,.5,0) 0s forwards,fill 1.2s cubic-bezier(.11,0,.5,0) .6s forwards}#dotccblog_l1{stroke-dasharray:73;stroke-dashoffset:73;fill-opacity:0;animation:draw 1.6s cubic-bezier(.11,0,.5,0) 0s forwards,fill 1.2s cubic-bezier(.11,0,.5,0) .6s forwards}#dotccblog_o2{stroke-dasharray:92;stroke-dashoffset:92;fill-opacity:0;animation:draw 1.6s cubic-bezier(.11,0,.5,0) 0s forwards,fill 1.2s cubic-bezier(.11,0,.5,0) .6s forwards}#dotccblog_g1{stroke-dasharray:136;stroke-dashoffset:136;fill-opacity:0;animation:draw 1.6s cubic-bezier(.11,0,.5,0) 0s forwards,fill 1.2s cubic-bezier(.11,0,.5,0) .6s forwards}@keyframes draw{to{stroke-dashoffset:0}}@keyframes fill{from{fill-opacity:0}to{fill-opacity:1}}</style></svg>","subtitle":{"text":[],"hitokoto":{"enable":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":false,"style":"default","links":{"github":null,"instagram":null,"zhihu":null,"twitter":null,"email":null},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.6.1","navbar":{"auto_hide":false,"color":{"left":"","right":"","transparency":35},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"},"About":{"path":"/about","icon":"fa-regular fa-window"}},"search":{"enable":false,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":null,"show_on_mobile":true,"links":null},"article_date_format":"auto","categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2021/12/12 15:40:23"};
+    window.lang_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+    window.data = {"masonry":false};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    <link rel="stylesheet" href="//evan.beee.top/projects/hexo-theme-redefine@2.6.1/source/fontawesome/fontawesome.min.css">
+    <link rel="stylesheet" href="//evan.beee.top/projects/hexo-theme-redefine@2.6.1/source/fontawesome/brands.min.css">
+    <link rel="stylesheet" href="//evan.beee.top/projects/hexo-theme-redefine@2.6.1/source/fontawesome/solid.min.css">
+    <link rel="stylesheet" href="//evan.beee.top/projects/hexo-theme-redefine@2.6.1/source/fontawesome/regular.min.css">
+    
+    
+    
+    
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+<!--        <span class="swup-progress-icon">-->
+<!--            <i class="fa-solid fa-circle-notch fa-spin"></i>-->
+<!--        </span>-->
+    
+</div>
+
+
+<main class="page-container" id="swup">
+
+    
+
+    <div class="main-content-container">
+
+
+        <div class="main-content-header">
+            <header class="navbar-container px-6 md:px-12">
+
+    <div class="navbar-content ">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                CalciumtabltDotCC
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/"
+                                        >
+                                    <i class="fa-regular fa-house fa-fw"></i>
+                                    HOME
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/about"
+                                        >
+                                    <i class="fa-regular fa-window fa-fw"></i>
+                                    ABOUT
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile sheet -->
+    <div class="navbar-drawer h-screen w-full absolute top-0 left-0 bg-background-color flex flex-col justify-between">
+        <ul class="drawer-navbar-list flex flex-col px-4 justify-center items-start">
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/"
+                        >
+                            <span>
+                                HOME
+                            </span>
+                            
+                                <i class="fa-regular fa-house fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/about"
+                        >
+                            <span>
+                                ABOUT
+                            </span>
+                            
+                                <i class="fa-regular fa-window fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+
+            
+            
+        </ul>
+
+        <div class="statistics flex justify-around my-2.5">
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">16</div>
+        <div class="label text-third-text-color text-sm">Tags</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">3</div>
+        <div class="label text-third-text-color text-sm">Categories</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">12</div>
+        <div class="label text-third-text-color text-sm">Posts</div>
+    </a>
+</div>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="main-content-body">
+
+            
+
+            <div class="main-content">
+
+                
+                    <div class="post-page-container flex relative justify-between box-border w-full h-full">
+    <div class="article-content-container">
+
+        <div class="article-title relative w-full">
+            
+                
+                
+                <img src="https://raw.gitmirror.com/CalciumTablet/picx-images-hosting/master/2024006/front-matter.webp" alt="科学的获取 Windows 原版纯净镜像" class="w-full h-60 sm:h-72 md:h-80 object-cover sm:rounded-t-large dark:brightness-75"/>
+                
+                <div class="w-full flex items-center absolute bottom-0 justify-start">
+                    <h1 class="article-title-cover text-center mx-6 my-6 text-second-text-color bg-background-color-transparent px-4 py-3 text-3xl sm:text-4xl md:text-5xl font-bold backdrop-blur-lg rounded-xl border border-border-color ">科学的获取 Windows 原版纯净镜像</h1>
+                </div>
+            
+            </div>
+
+        
+            <div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
+                <div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
+                    <img src="https://raw.gitmirror.com/CalciumTablet/picx-images-hosting/master/website/avatar.gif">
+                </div>
+                <div class="info flex flex-col justify-between">
+                    <div class="author flex items-center">
+                        <span class="name text-default-text-color text-lg font-semibold">Calciumtablet</span>
+                        
+                            <span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">钙片</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2024-02-24 18:17:14</span>
+        <span class="mobile">2024-02-24 18:17:14</span>
+        <span class="hover-info">Created</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2024-04-19 16:15:18</span>
+            <span class="mobile">2024-04-19 16:15:18</span>
+            <span class="hover-info">Updated</span>
+        </span>
+    
+
+    
+        <span class="article-categories article-meta-item">
+            <i class="fa-regular fa-folders"></i>&nbsp;
+            <ul>
+                
+                
+                    
+                        
+                        <li>
+                            <a href="/categories/Tutorial/">Tutorial</a>&nbsp;
+                        </li>
+                    
+                    
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/Software/">Software</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/Resource/">Resource</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        
+
+
+        <div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
+            <h2 id="下载-Windows-转换脚本"><a href="#下载-Windows-转换脚本" class="headerlink" title="下载 Windows 转换脚本"></a>下载 Windows 转换脚本</h2><!--TitleID:202400601-->
+
+<p>首先前往 UUP dump 网站，下载脚本文件。UUP dump有很多网站，你可以在互联网上找到很多个，不用担心，他们都是可以用来下载脚本且都是很安全的，以下几个是我最常用 UUP dump 网站:</p>
+<ul>
+<li><p><a class="link"   target="_blank" rel="noopener" href="https://www.uupdump.cn/" >www.uupdump.cn  <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> 国内正常使用</p>
+</li>
+<li><p><a class="link"   target="_blank" rel="noopener" href="https://www.uupdump.net/" >www.uupdump.net <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> 部分地区可能无法访问</p>
+</li>
+</ul>
+<p>前往 UUP dump，他们的首页会是这样的:</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://raw.gitmirror.com/CalciumTablet/picx-images-hosting/master/2024006/20240060101.webp"
+                      alt="20240060101"
+                > <br></p>
+<p>在这里我们可以找到近期的 Windows 更新以及之前的版本，如果想要下载最新的镜像可以从下面的 <strong>快速选项</strong> 来快速找到最新版本的镜像，当然如果你需要更早一些的镜像也可以在搜索栏进行检索。这里我们直接下载 <strong>公开发布的最新内部版本</strong> 的 <strong>x64</strong> 体系架构，直接点击后面的 x64 即可快速找到最新版本的系统。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://raw.gitmirror.com/CalciumTablet/picx-images-hosting/master/2024006/20240060102.webp"
+                      alt="20240060102"
+                > <br></p>
+<p>点击后我们来到新的页面，这个页面是符合你选择的 <strong>发布类型</strong>、<strong>体系结构</strong> 以及 <strong>最新版本</strong> 三个限定条件的检索结果，这里可以看到有两条记录满足条件，其中第二个便是我们需要的系统，名称为 Windows 11,version23H2(22631.3155)amd64，我们点击它进入脚本配置页面。</p>
+<p>第一步是选择镜像的语言，我们直接选择我们需要的并下一步即可，如果想支持更多语言可以在安装完镜像以后去系统设置里面自行添加新的语言。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://raw.gitmirror.com/CalciumTablet/picx-images-hosting/master/2024006/20240060103.webp"
+                      alt="20240060103"
+                > <br></p>
+<p>第二步是选择 SKU 版本，我们不需要了解何为 SKU 版本，我们只需要对照着右边的表格来确认我们需要的 SKU 版本即可。举个例子，我要安装 Windows11 专业工作站版，对照着右边的表格可以看到所需的 SKU 版本是专业版，那我们就勾选左侧的专业版即可。确认好 SKU 版本后点击下一步。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://raw.gitmirror.com/CalciumTablet/picx-images-hosting/master/2024006/20240060104.webp"
+                      alt="20240060104"
+                > <br></p>
+<p>第三步是脚本的细节内容调整，如果你很清楚自己的需求并且对其中内容有所了解可以在此处对脚本进行调整，若只想下载镜像则无需顾及任何内容直接点击创建下载包即可。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://raw.gitmirror.com/CalciumTablet/picx-images-hosting/master/2024006/20240060105.webp"
+                      alt="20240060105"
+                > <br></p>
+<p>点击创建下载包后浏览器会自动下载一个很小的压缩包，大概在 10KB 左右，它就是我们在 UUP dump 配置的 Windows转换程序脚本文件。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://raw.gitmirror.com/CalciumTablet/picx-images-hosting/master/2024006/20240060106.webp"
+                      alt="20240060106"
+                > <br><br></p>
+<h2 id="使用脚本生成镜像文件"><a href="#使用脚本生成镜像文件" class="headerlink" title="使用脚本生成镜像文件"></a>使用脚本生成镜像文件</h2><!--TitleID:202400602-->
+
+<p>将下载的脚本文件压缩包解压到任意位置并确认所在盘有<strong>至少 20GB 的闲置存储空间</strong>，解压完成后我们会得到以下文件:</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://raw.gitmirror.com/CalciumTablet/picx-images-hosting/master/2024006/20240060201.webp"
+                      alt="20240060201"
+                > <br></p>
+<p>可以通过双击 uup_download_windows.cmd 来启动脚本，在启动脚本之前你需要知道以下内容:</p>
+<ul>
+<li>脚本生成镜像过程<strong>需要极长的时间</strong>，具体时间长短取决于你的硬件配置。 (硬件配置供参考: 7800x3d 需要约 20 分钟)</li>
+<li>脚本运行过程中需要全程联网，且会占用大量 CPU 资源，所以在脚本运行期间尽量<strong>不要用电脑干其他事</strong>。</li>
+<li>一定要确认<strong>有至少 20GB 闲置的储存空间</strong>，避免生成过程中由于空间不足导致的报错。<br>确认完以上内容后就可以运行脚本了，之后只需等待镜像出炉即可。</li>
+</ul>
+<details class="green" data-header-exclude><summary><i class="fa-solid fa-chevron-right"></i>&nbsp;⭐关于脚本卡在下载部分的解决办法 </summary>
+              <div class='content'>
+              <p>如果你的脚本<strong>卡在下载步骤</strong>，并且使用科学上网仍然不生效，那么你需要修改一下脚本。右键 uup_download_windows.cmd 点击编辑，在脚本头部需要修改一行代码。<br>在脚本的第 20 行将 <code>:: set &quot;all_proxy=&quot;</code> 改为 <code>set &quot;all_proxy=127.0.0.1:XXXX&quot;</code>，其中的 <code>XXXX</code> 为你的科学上网的端口，如 Clash 的 7890。以 Clash 举例如下</p><div class="highlight-container" data-rel="Cmd"><figure class="iseeu highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br></pre></td><td class="code"><pre><span class="line">@<span class="built_in">echo</span> off</span><br><span class="line">:: Generated on <span class="number">2024</span>-<span class="number">02</span>-<span class="number">24</span> <span class="number">07</span>:<span class="number">57</span>:<span class="number">27</span> GMT</span><br><span class="line"></span><br><span class="line">:: Proxy configuration</span><br><span class="line">:: <span class="keyword">If</span> you need to configure a proxy to be able to connect to the internet,</span><br><span class="line">:: then you can <span class="keyword">do</span> this by configuring the all_proxy environment variable.</span><br><span class="line">:: By default this variable is commented out, configuring aria2c to use </span><br><span class="line">:: the proxy settings specified by the system.</span><br><span class="line">::</span><br><span class="line">:: Usage: <span class="built_in">set</span> &quot;all_proxy=proxy_address&quot;</span><br><span class="line">:: <span class="keyword">For</span> example: <span class="built_in">set</span> &quot;all_proxy=<span class="number">127</span>.<span class="number">0</span>.<span class="number">0</span>.<span class="number">1</span>:<span class="number">8888</span>&quot;</span><br><span class="line">::</span><br><span class="line">:: <span class="built_in">More</span> information how to use this can be found <span class="built_in">at</span>:</span><br><span class="line">:: https://aria2.github.io/manual/en/html/aria2c.html#cmdoption-all-proxy</span><br><span class="line">:: https://aria2.github.io/manual/en/html/aria2c.html#environment</span><br><span class="line"></span><br><span class="line">:: Uncomment the following line to override the proxy settings specified</span><br><span class="line">:: by the system.</span><br><span class="line">::</span><br><span class="line">:: <span class="built_in">set</span> &quot;all_proxy=&quot;     &lt;&lt;&lt;原代码</span><br><span class="line"><span class="built_in">set</span> &quot;all_proxy=<span class="number">127</span>.<span class="number">0</span>.<span class="number">0</span>.<span class="number">1</span>:<span class="number">7890</span>&quot;     &lt;&lt;&lt;修改后</span><br><span class="line"></span><br><span class="line">:: End of proxy configuration</span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> /d &quot;%~dp0&quot;</span><br><span class="line"><span class="keyword">if</span> <span class="keyword">NOT</span> &quot;<span class="variable">%cd%</span>&quot;==&quot;%<span class="built_in">cd</span>: =%&quot; (</span><br><span class="line">    <span class="built_in">echo</span> Current directory contains spaces <span class="keyword">in</span> its <span class="built_in">path</span>.</span><br><span class="line">    <span class="built_in">echo</span> Please <span class="built_in">move</span> or <span class="built_in">rename</span> the directory to one <span class="keyword">not</span> containing spaces.</span><br><span class="line">    <span class="built_in">echo</span>.</span><br><span class="line">    <span class="built_in">pause</span></span><br><span class="line">    <span class="keyword">goto</span> :EOF</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> &quot;[%<span class="number">1</span>]&quot; == &quot;[<span class="number">49127</span>c4b-<span class="number">02</span>dc-<span class="number">482</span>e-ac4f-ec4d659b7547]&quot; <span class="keyword">goto</span> :START_PROCESS</span><br><span class="line">REG QUERY HKU\S-<span class="number">1</span>-<span class="number">5</span>-<span class="number">19</span>\Environment &gt;<span class="built_in">NUL</span> <span class="number">2</span>&gt;&amp;<span class="number">1</span> &amp;&amp; <span class="keyword">goto</span> :START_PROCESS</span><br><span class="line"></span><br><span class="line"><span class="built_in">set</span> command=&quot;&quot;&quot;%~f0&quot;&quot;&quot; <span class="number">49127</span>c4b-<span class="number">02</span>dc-<span class="number">482</span>e-ac4f-ec4d659b7547</span><br><span class="line"><span class="built_in">SETLOCAL</span> ENABLEDELAYEDEXPANSION</span><br><span class="line"><span class="built_in">set</span> &quot;command=<span class="variable">!command:&#x27;=&#x27;&#x27;!</span>&quot;</span><br><span class="line"></span><br><span class="line">powershell -NoProfile <span class="built_in">Start</span>-Process -FilePath &#x27;<span class="variable">%COMSPEC%</span>&#x27; ^</span><br><span class="line">-ArgumentList &#x27;/c &quot;&quot;&quot;<span class="variable">!command!</span>&quot;&quot;&quot;&#x27; -Verb RunAs <span class="number">2</span>&gt;<span class="built_in">NUL</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">IF</span> <span class="variable">%ERRORLEVEL%</span> <span class="keyword">GTR</span> <span class="number">0</span> (</span><br><span class="line">    <span class="built_in">echo</span> =====================================================</span><br><span class="line">    <span class="built_in">echo</span> This script needs to be executed as an administrator.</span><br><span class="line">    <span class="built_in">echo</span> =====================================================</span><br><span class="line">    <span class="built_in">echo</span>.</span><br><span class="line">    <span class="built_in">pause</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="built_in">SETLOCAL</span> DISABLEDELAYEDEXPANSION</span><br><span class="line"><span class="keyword">goto</span> :EOF</span><br><span class="line"></span><br><span class="line">:START_PROCESS</span><br><span class="line"><span class="built_in">title</span> <span class="number">22631</span>.<span class="number">3155</span>_amd64_zh-cn_professional_18947b65 download</span><br><span class="line"></span><br><span class="line"><span class="built_in">set</span> &quot;aria2=files\aria2c.exe&quot;</span><br><span class="line"><span class="built_in">set</span> &quot;a7z=files\<span class="number">7</span>zr.exe&quot;</span><br><span class="line"><span class="built_in">set</span> &quot;uupConv=files\uup-converter-wimlib.<span class="number">7</span>z&quot;</span><br><span class="line"><span class="built_in">set</span> &quot;aria2Script=files\aria2_script.<span class="variable">%random%</span>.txt&quot;</span><br><span class="line"><span class="built_in">set</span> &quot;destDir=UUPs&quot;</span><br><span class="line"></span><br><span class="line">powershell -NoProfile -ExecutionPolicy Unrestricted .\files\get_aria2.ps1 || (<span class="built_in">pause</span> &amp; <span class="keyword">exit</span> /b <span class="number">1</span>)</span><br><span class="line"><span class="built_in">echo</span>.</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> Downloading the UUP converter...</span><br><span class="line">&quot;<span class="variable">%aria2%</span>&quot; --no-conf --async-dns=false --console-log-level=warn --log-level=info --log=&quot;aria2_download.log&quot; -x16 -s16 -j2 -c -R -d&quot;files&quot; -i&quot;files\converter_windows&quot;</span><br><span class="line"><span class="keyword">if</span> <span class="variable">%ERRORLEVEL%</span> <span class="keyword">GTR</span> <span class="number">0</span> <span class="keyword">call</span> :DOWNLOAD_CONVERTER_ERROR &amp; <span class="keyword">exit</span> /b <span class="number">1</span></span><br><span class="line"><span class="built_in">echo</span>.</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">NOT</span> <span class="keyword">EXIST</span> ConvertConfig.ini <span class="keyword">goto</span> :NO_FILE_ERROR</span><br><span class="line"><span class="keyword">if</span> <span class="keyword">NOT</span> <span class="keyword">EXIST</span> CustomAppsList.txt <span class="keyword">goto</span> :NO_FILE_ERROR</span><br><span class="line"><span class="keyword">if</span> <span class="keyword">NOT</span> <span class="keyword">EXIST</span> <span class="variable">%a7z%</span> <span class="keyword">goto</span> :NO_FILE_ERROR</span><br><span class="line"><span class="keyword">if</span> <span class="keyword">NOT</span> <span class="keyword">EXIST</span> <span class="variable">%uupConv%</span> <span class="keyword">goto</span> :NO_FILE_ERROR</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> Extracting UUP converter...</span><br><span class="line">&quot;<span class="variable">%a7z%</span>&quot; -x!ConvertConfig.ini -x!CustomAppsList.txt -y x &quot;<span class="variable">%uupConv%</span>&quot; &gt;<span class="built_in">NUL</span></span><br><span class="line"><span class="built_in">echo</span>.</span><br><span class="line"></span><br><span class="line">:DOWNLOAD_APPS</span><br><span class="line"><span class="built_in">echo</span> Retrieving aria2 script <span class="keyword">for</span> Microsoft Store Apps...</span><br><span class="line">&quot;<span class="variable">%aria2%</span>&quot; --no-conf --async-dns=false --console-log-level=warn --log-level=info --log=&quot;aria2_download.log&quot; -o&quot;<span class="variable">%aria2Script%</span>&quot; --allow-overwrite=true --auto-file-renaming=false &quot;https://uupdump.<span class="built_in">net</span>/get.php?id=<span class="number">18947</span>b65-<span class="number">2180</span>-<span class="number">4838</span>-a051-<span class="number">2</span>dbe1ee40064&amp;pack=neutral&amp;edition=app&amp;aria2=<span class="number">2</span>&quot;</span><br><span class="line"><span class="keyword">if</span> <span class="variable">%ERRORLEVEL%</span> <span class="keyword">GTR</span> <span class="number">0</span> <span class="keyword">call</span> :DOWNLOAD_ERROR &amp; <span class="keyword">exit</span> /b <span class="number">1</span></span><br><span class="line"><span class="built_in">echo</span>.</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> /F &quot;tokens=<span class="number">2</span> delims=:&quot; <span class="variable">%%i</span> <span class="keyword">in</span> (&#x27;<span class="built_in">findstr</span> #UUPDUMP_ERROR: &quot;<span class="variable">%aria2Script%</span>&quot;&#x27;) <span class="keyword">do</span> <span class="built_in">set</span> DETECTED_ERROR=<span class="variable">%%i</span></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">NOT</span> [<span class="variable">%DETECTED_ERROR%</span>] == [] (</span><br><span class="line">    <span class="built_in">echo</span> Unable to retrieve data from Windows Update servers. Reason: <span class="variable">%DETECTED_ERROR%</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="keyword">If</span> this problem persists, most likely the <span class="built_in">set</span> you are attempting to download was removed from Windows Update servers.</span><br><span class="line">    <span class="built_in">echo</span>.</span><br><span class="line">    <span class="built_in">pause</span></span><br><span class="line">    <span class="keyword">goto</span> :EOF</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> Downloading Microsoft Store Apps...</span><br><span class="line">&quot;<span class="variable">%aria2%</span>&quot; --no-conf --async-dns=false --console-log-level=warn --log-level=info --log=&quot;aria2_download.log&quot; -x16 -s16 -j25 -c -R -d&quot;<span class="variable">%destDir%</span>&quot; -i&quot;<span class="variable">%aria2Script%</span>&quot;</span><br><span class="line"><span class="keyword">if</span> <span class="variable">%ERRORLEVEL%</span> <span class="keyword">GTR</span> <span class="number">0</span> <span class="keyword">goto</span> :DOWNLOAD_APPS</span><br><span class="line"><span class="built_in">echo</span>.</span><br><span class="line"></span><br><span class="line">:DOWNLOAD_UUPS</span><br><span class="line"><span class="built_in">echo</span> Retrieving aria2 script <span class="keyword">for</span> the UUP <span class="built_in">set</span>...</span><br><span class="line">&quot;<span class="variable">%aria2%</span>&quot; --no-conf --async-dns=false --console-log-level=warn --log-level=info --log=&quot;aria2_download.log&quot; -o&quot;<span class="variable">%aria2Script%</span>&quot; --allow-overwrite=true --auto-file-renaming=false &quot;https://uupdump.<span class="built_in">net</span>/get.php?id=<span class="number">18947</span>b65-<span class="number">2180</span>-<span class="number">4838</span>-a051-<span class="number">2</span>dbe1ee40064&amp;pack=zh-cn&amp;edition=professional&amp;aria2=<span class="number">2</span>&quot;</span><br><span class="line"><span class="keyword">if</span> <span class="variable">%ERRORLEVEL%</span> <span class="keyword">GTR</span> <span class="number">0</span> <span class="keyword">call</span> :DOWNLOAD_ERROR &amp; <span class="keyword">exit</span> /b <span class="number">1</span></span><br><span class="line"><span class="built_in">echo</span>.</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> /F &quot;tokens=<span class="number">2</span> delims=:&quot; <span class="variable">%%i</span> <span class="keyword">in</span> (&#x27;<span class="built_in">findstr</span> #UUPDUMP_ERROR: &quot;<span class="variable">%aria2Script%</span>&quot;&#x27;) <span class="keyword">do</span> <span class="built_in">set</span> DETECTED_ERROR=<span class="variable">%%i</span></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">NOT</span> [<span class="variable">%DETECTED_ERROR%</span>] == [] (</span><br><span class="line">    <span class="built_in">echo</span> Unable to retrieve data from Windows Update servers. Reason: <span class="variable">%DETECTED_ERROR%</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="keyword">If</span> this problem persists, most likely the <span class="built_in">set</span> you are attempting to download was removed from Windows Update servers.</span><br><span class="line">    <span class="built_in">echo</span>.</span><br><span class="line">    <span class="built_in">pause</span></span><br><span class="line">    <span class="keyword">goto</span> :EOF</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> Downloading the UUP <span class="built_in">set</span>...</span><br><span class="line">&quot;<span class="variable">%aria2%</span>&quot; --no-conf --async-dns=false --console-log-level=warn --log-level=info --log=&quot;aria2_download.log&quot; -x16 -s16 -j5 -c -R -d&quot;<span class="variable">%destDir%</span>&quot; -i&quot;<span class="variable">%aria2Script%</span>&quot;</span><br><span class="line"><span class="keyword">if</span> <span class="variable">%ERRORLEVEL%</span> <span class="keyword">GTR</span> <span class="number">0</span> <span class="keyword">goto</span> :DOWNLOAD_UUPS &amp; <span class="keyword">exit</span> /b <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">EXIST</span> <span class="built_in">convert</span>-UUP.<span class="built_in">cmd</span> <span class="keyword">goto</span> :START_CONVERT</span><br><span class="line"><span class="built_in">pause</span></span><br><span class="line"><span class="keyword">goto</span> :EOF</span><br><span class="line"></span><br><span class="line">:START_CONVERT</span><br><span class="line"><span class="keyword">call</span> <span class="built_in">convert</span>-UUP.<span class="built_in">cmd</span></span><br><span class="line"><span class="keyword">goto</span> :EOF</span><br><span class="line"></span><br><span class="line">:NO_FILE_ERROR</span><br><span class="line"><span class="built_in">echo</span> We couldn&#x27;t <span class="built_in">find</span> one of needed files <span class="keyword">for</span> this script.</span><br><span class="line"><span class="built_in">pause</span></span><br><span class="line"><span class="keyword">goto</span> :EOF</span><br><span class="line"></span><br><span class="line">:DOWNLOAD_CONVERTER_ERROR</span><br><span class="line"><span class="built_in">echo</span>.</span><br><span class="line"><span class="built_in">echo</span> An error has occurred while downloading the UUP converter.</span><br><span class="line"><span class="built_in">pause</span></span><br><span class="line"><span class="keyword">goto</span> :EOF</span><br><span class="line"></span><br><span class="line">:DOWNLOAD_ERROR</span><br><span class="line"><span class="built_in">echo</span>.</span><br><span class="line"><span class="built_in">echo</span> We have encountered an error while downloading files.</span><br><span class="line"><span class="built_in">pause</span></span><br><span class="line"><span class="keyword">goto</span> :EOF</span><br><span class="line"></span><br><span class="line">:EOF</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
+              </div>
+            </details>
+
+<p>最后终端会弹出以下消息，至此脚本就运行结束了，文件夹内会生成一个 .iso 文件即为我们需要的镜像文件。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://raw.gitmirror.com/CalciumTablet/picx-images-hosting/master/2024006/20240060202.webp"
+                      alt="20240060202"
+                ></p>
+<p><br><br></p>
+<hr>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://raw.gitmirror.com/CalciumTablet/picx-images-hosting/master/2024006/front-matter.webp"
+                      alt="front-matter"
+                ></p>
+
+        </div>
+
+        
+            <div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li><strong>Title:</strong> 科学的获取 Windows 原版纯净镜像</li>
+        <li><strong>Author:</strong> Calciumtablet</li>
+        <li><strong>Created at
+                :</strong> 2024-02-24 18:17:14</li>
+        
+            <li>
+                <strong>Updated at
+                    :</strong> 2024-04-19 16:15:18
+            </li>
+        
+        <li>
+            <strong>Link:</strong> https://calciumtablet.cc/2024/02/24/Tutorial/Software/Resource/2024006/
+        </li>
+        <li>
+            <strong>
+                License:
+            </strong>
+            
+
+            
+                This work is licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a>.
+            
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
+                
+                    <li class="tag-item mx-0.5">
+                        <a href="/tags/Software/">#Software</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item mx-0.5">
+                        <a href="/tags/Resource/">#Resource</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+
+        
+            <div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+                
+                    <div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+                        <a class="prev"
+                        rel="prev"
+                        href="/2024/03/02/Tutorial/Hardware/DX4600pro/2024007/"
+                        >
+                            <span class="left arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">绿联 NAS WebDAV 启用 ipv6 支持</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+                        <a class="next"
+                        rel="next"
+                        href="/2024/02/03/Record/Game/Nier/2024004/"
+                        >
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">龙背上的骑兵 英版小说集</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+
+        
+    </div>
+
+    
+        <div class="toc-content-container">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">On this page</div>
+        <div class="page-title">科学的获取 Windows 原版纯净镜像</div>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BD-Windows-%E8%BD%AC%E6%8D%A2%E8%84%9A%E6%9C%AC"><span class="nav-text">下载 Windows 转换脚本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E8%84%9A%E6%9C%AC%E7%94%9F%E6%88%90%E9%95%9C%E5%83%8F%E6%96%87%E4%BB%B6"><span class="nav-text">使用脚本生成镜像文件</span></a></li></ol>
+
+    </div>
+</div>
+        </div>
+    
+</div>
+
+
+
+                
+
+            </div>
+
+            
+
+        </div>
+
+        <div class="main-content-footer">
+            <footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
+    <div class="info-container py-3 text-center">
+        
+        <div class="text-center">
+            &copy;
+            
+              <span>2021</span>
+              -
+            
+            2024&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">Calciumtablet</a>
+            
+                
+                <p class="post-count space-x-0.5">
+                    <span>
+                        12 posts in total
+                    </span>
+                    
+                </p>
+            
+        </div>
+        
+            <script data-swup-reload-script src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="relative text-center lg:absolute lg:right-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-right">
+                
+                    <span id="busuanzi_container_site_uv" class="lg:!block">
+                        <span class="text-sm">VISITOR COUNT</span>
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="lg:!block">
+                        <span class="text-sm">TOTAL PAGE VIEWS</span>
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
+            <span class="lg:block text-sm">POWERED BY <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a></span>
+            <span class="text-sm lg:block">THEME&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.6.1</a></span>
+        </div>
+        
+        
+            <div>
+                Blog up for <span class="odometer" id="runtime_days" ></span> days <span class="odometer" id="runtime_hours"></span> hrs <span class="odometer" id="runtime_minutes"></span> Min <span class="odometer" id="runtime_seconds"></span> Sec
+            </div>
+        
+        
+            <script data-swup-reload-script>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+        
+    </div>  
+</footer>
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="article-tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="right-bottom-tools page-aside-toggle">
+                <i class="fa-regular fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-side-tools-container">
+        <div class="side-tools-container">
+    <ul class="hidden-tools-list">
+        <li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-plus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-minus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
+            <i class="fa-regular fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
+            <i class="fa-regular fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="visible-tools-list">
+        <li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
+            <i class="fa-regular fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+
+</main>
+
+
+    <script src="https://evan.beee.top/projects/hexo-theme-redefine@2.6.1/source/js/libs/Swup.min.js"></script><script src="https://evan.beee.top/projects/hexo-theme-redefine@2.6.1/source/js/libs/SwupSlideTheme.min.js"></script><script src="https://evan.beee.top/projects/hexo-theme-redefine@2.6.1/source/js/libs/SwupScriptsPlugin.min.js"></script><script src="https://evan.beee.top/projects/hexo-theme-redefine@2.6.1/source/js/libs/SwupProgressPlugin.min.js"></script><script src="https://evan.beee.top/projects/hexo-theme-redefine@2.6.1/source/js/libs/SwupScrollPlugin.min.js"></script><script src="https://evan.beee.top/projects/hexo-theme-redefine@2.6.1/source/js/libs/SwupPreloadPlugin.min.js"></script>
+<script>
+    const swup = new Swup({
+        plugins: [
+            new SwupScriptsPlugin({
+                optin: true,
+            }),
+            new SwupProgressPlugin(),
+            new SwupScrollPlugin({
+                offset: 80,
+            }),
+            new SwupSlideTheme({
+                mainElement: ".main-content-body",
+            }),
+            new SwupPreloadPlugin(),
+        ],
+        containers: ["#swup"],
+    });
+</script>
+
+
+
+
+
+
+<script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.6.1/source/js/tools/imageViewer.js"></script><script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.6.1/source/js/utils.js"></script><script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.6.1/source/js/main.js"></script><script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.6.1/source/js/layouts/navbarShrink.js"></script><script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.6.1/source/js/tools/scrollTopBottom.js"></script><script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.6.1/source/js/tools/lightDarkSwitch.js"></script><script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.6.1/source/js/layouts/categoryList.js"></script>
+
+
+
+
+    <script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.6.1/source/js/tools/codeBlock.js"></script>
+
+
+
+    <script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.6.1/source/js/layouts/lazyload.js"></script>
+
+
+
+    <script src="https://evan.beee.top/projects/hexo-theme-redefine@2.6.1/source/js/tools/runtime.js"></script>
+    <script src="https://evan.beee.top/projects/hexo-theme-redefine@2.6.1/source/js/libs/odometer.min.js"></script>
+    <link rel="stylesheet" href="//evan.beee.top/projects/hexo-theme-redefine@2.6.1/source/assets/odometer-theme-minimal.css">
+
+
+
+  <script src="https://evan.beee.top/projects/hexo-theme-redefine@2.6.1/source/js/libs/Typed.min.js"></script>
+  <script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.6.1/source/js/plugins/typed.js"></script>
+
+
+
+
+
+
+
+
+<div class="post-scripts" data-swup-reload-script>
+    
+        <script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.6.1/source/js/tools/tocToggle.js"></script><script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.6.1/source/js/layouts/toc.js"></script><script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.6.1/source/js/plugins/tabs.js"></script>
+    
+</div>
+
+
+</body>
+</html>
